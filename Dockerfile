@@ -1,9 +1,12 @@
 FROM node:14.18.1 AS build-step
+RUN npm install -g @angular/cli
 WORKDIR /app
-COPY package.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+COPY package.json .
 
-FROM nginx:1.16.1-alpine AS prod-stage
-COPY --from=build-step /app/dist/StudentSurvey /usr/share/nginx/html
+RUN npm install
+
+COPY . .
+
+EXPOSE 4200
+
+CMD ng serve --host 0.0.0.0
