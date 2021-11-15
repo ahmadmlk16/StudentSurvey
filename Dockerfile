@@ -1,22 +1,9 @@
-# Stage 1
-FROM node:latest as build
-
-RUN mkdir -p /app
-
+FROM node:14.18.1 AS build-step
 WORKDIR /app
-
-COPY package.json /app
-
+COPY package.json ./
 RUN npm install
+COPY . .
+RUN npm run build
 
-COPY . /app
-
-RUN npm run build --prod
-
-
-# Stage 2
-FROM nginx:latest
-
-COPY --from=build-step /app/dist/studentsurvey /usr/share/nginx/html
-
-EXPOSE 4200:80
+FROM nginx:1.16.1-alpine AS prod-stage
+COPY --from=build-step /app/dist/StudentSurvey /usr/share/nginx/html
