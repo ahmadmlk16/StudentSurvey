@@ -1,0 +1,89 @@
+
+
+
+<div id="outside">
+  <form id="survey-form" autocomplete="on">
+      <h1 id="title">Student Survey</h1>
+
+      <!-- ------------------Personal Details---------------------------- -->
+      <fieldset>
+          <!-- groups of widgets that share the same purpose, for styling and semantic purposes -->
+          <legend>Personal Details</legend>
+          <!-- formally describes the purpose of the fieldset it is included inside. -->
+          <div>
+              <label for="fname">First Name:</label>
+              <input type="text"  name = "fname" required [(ngModel)]="survey.firstName" placeholder="Enter first name here"></div>
+          <div>
+              <label for="lname">Last Name:</label>
+              <input type="text" name = "lname" required [(ngModel)] = "survey.lastName" placeholder="Enter last name here">  </div>
+          <div>
+              <label for="address">Street Address:</label>
+              <input type="Address"  name = "street" required [(ngModel)] = "survey.address" placeholder="Enter street address here">  </div>
+          <div>
+              <label for="city">City:</label>
+              <input type="City" name = "city" required [(ngModel)] = "survey.city" placeholder="Enter city here">  </div>
+          <div>
+              <label for="state">State:</label>
+              <input type="State" name = "state" required [(ngModel)] = "survey.state" placeholder="Enter state here">  </div>
+          <div>
+              <label for="zipcode">Zipcode:</label>
+              <input type="Zipcode" name = "zip" required [(ngModel)] = "survey.zip" placeholder="Enter zip code here">  </div>
+          <div>
+              <label for="telephone">Telephone #:</label>
+              <input type="Telephone" name = "tele" required [(ngModel)] = "survey.tel" placeholder="Enter telephone # here">  </div>
+          <div>
+              <label for="Email">Email:</label>
+              <input type="email" name = "email" required [(ngModel)] = "survey.emailId" placeholder="Enter email here">  </div>
+          <div>
+              <label for="Date">Date:</label>
+              <input type="date" name = "date" required [(ngModel)] = "survey.sdate" placeholder="Enter Date here">  </div>
+
+
+
+      </fieldset>
+      <!-- ------------------Checkboxes-------------------------------- -->
+      <fieldset>
+          <label for="Campus">What did you like most about the campus?</label>
+
+          <li *ngFor="let child of nestedjson; let i = index">
+            <input type="checkbox" name="like" [(ngModel)]="child.checked">
+            {{child.name}}
+          </li>
+
+      </fieldset>
+
+      <fieldset>
+          <!-- ------------------Radio Buttons-------------------------------- -->
+          <div>
+              <label for="Interest">How did you become interested in the University?</label>
+              <p>
+                  <input type="radio" name="interest" value="Friends"  [(ngModel)] = "survey.interested_in_college"> Friends<br>
+                  <input type="radio" name="interest" value="Television"  [(ngModel)] = "survey.interested_in_college"> Television<br>
+                  <input type="radio" name="interest" value="Internet"  [(ngModel)] = "survey.interested_in_college"> Internet<br>
+                  <input type="radio" name="interest" value="Other"   [(ngModel)] = "survey.interested_in_college"> Other
+              </p>
+          </div>
+      </fieldset>
+      <!-- -----------------Dropdown menus--------------------------------- -->
+
+      <fieldset>
+              <label for="Likely">How likely are you to recommend the University?</label>
+              <select id="How Likely" name ="howLikely" [(ngModel)]="survey.recommend">
+                  <option value="Very Likely">Very Likely</option>
+                  <option value="Likely">Likely</option>
+                  <option value="Unlikely">Unlikely</option>
+              </select>
+      </fieldset>
+
+
+      <div id="submitbutton">
+          <button type="button" (click)="clickEvent()" id="submit">Submit</button>  </div>
+
+      <div id="cancelbutton">
+          <button type="button" (click)="newSurvey()" id="cancel">Cancel</button>  </div>
+
+  </form>
+
+  
+</div>
+
